@@ -15,8 +15,7 @@ use Illuminate\Cache\Repository as CacheRepository;
 /**
  * Class: Cache
  *
- *
- * @package
+ * @package Thapp\XmlConf
  * @version
  * @author Thomas Appel <mail@thomas-appel.com>
  * @license MIT

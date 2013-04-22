@@ -15,8 +15,7 @@ namespace Thapp\XmlConf;
 /**
  * Class: SimpleXmlConfig
  *
- *
- * @package
+ * @package Thapp\XmlConf
  * @version
  * @author Thomas Appel <mail@thomas-appel.com>
  * @license MIT

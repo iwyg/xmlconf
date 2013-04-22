@@ -12,9 +12,13 @@
 namespace Thapp\XmlConf;
 
 /**
- * @class ConfigReaderInterface
+ * Class: ConfigReaderInterface
+ *
+ * @package Thapp\XmlConf
+ * @version
+ * @author Thomas Appel <mail@thomas-appel.com>
+ * @license MIT
  */
-
 interface ConfigReaderInterface
 {
     public function load();

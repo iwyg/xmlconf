@@ -14,9 +14,14 @@ namespace Thapp\XmlConf;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * @class XmlConfServiceProvider
+ * Class: XmlConfServiceProvider
+ *
+ * @uses ServiceProvider
+ * @package Thapp\XmlConf
+ * @version
+ * @author Thomas Appel <mail@thomas-appel.com>
+ * @license MIT
  */
-
 class XmlConfServiceProvider extends ServiceProvider
 {
     /**

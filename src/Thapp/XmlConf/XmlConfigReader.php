@@ -17,7 +17,7 @@ use Thapp\XmlConf\Exception\InvalidConfigurationSchema;
 /**
  * Class: XmlConfigReader
  *
- * @package Symphony
+ * @package Thapp\XmlConf
  * @version
  * @author Thomas Appel <mail@thomas-appel.com>
  * @license MIT

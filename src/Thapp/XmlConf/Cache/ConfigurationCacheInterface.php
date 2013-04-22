@@ -15,7 +15,7 @@ namespace Thapp\XmlConf\Cache;
  * Interface: ConfigurationCacheInterface
  *
  *
- * @package Symphony
+ * @package Thapp\XmlConf
  * @version
  * @author Thomas Appel <mail@thomas-appel.com>
  * @license MIT
