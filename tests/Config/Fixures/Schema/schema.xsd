@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns="http://getsymphony.com/schema/stubs"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://getsymphony.com/schema/stubs"
+	elementFormDefault="qualified">
+
+	<xs:element name="stubs" type="stubs"/>
+
+	<xs:complexType name="stubs"> 
+		<xs:annotation>
+			<xs:documentation>
+				<![CDATA[Root element of the sections.]]>
+			</xs:documentation>
+		</xs:annotation>   
+		<xs:sequence>
+			<xs:element name="stub" type="stub" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="stub"> 
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+
+</xs:schema>

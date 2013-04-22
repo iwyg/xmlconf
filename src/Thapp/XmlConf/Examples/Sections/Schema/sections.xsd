@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns="http://getsymphony.com/schema/section"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://getsymphony.com/schema/section"
+	elementFormDefault="qualified">
+
+	<xs:element name="sections" type="sections"/>
+
+	<xs:complexType name="sections"> 
+		<xs:annotation>
+			<xs:documentation>
+				<![CDATA[Root element of the sections.]]>
+			</xs:documentation>
+		</xs:annotation>   
+		<xs:sequence>
+			<xs:element name="section" type="section" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="section">
+		<xs:annotation>
+			<xs:documentation>
+				<![CDATA[Definition of a Section.]]>
+			</xs:documentation>
+		</xs:annotation>   
+		<xs:sequence>
+			<xs:element name="fields" type="fields" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="handle" type="xs:string" use="required"/>
+		<xs:attribute name="navgroup" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="fields">
+		<xs:annotation>
+			<xs:documentation>
+				<![CDATA[Fields that a secion may contain.]]>
+			</xs:documentation>
+		</xs:annotation>   
+		<xs:sequence>
+			<xs:element name="field" type="field" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="field">
+		<xs:annotation>
+			<xs:documentation>
+				<![CDATA[Definition of a field.]]>
+			</xs:documentation>
+		</xs:annotation>   
+		<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="type" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="handle" type="xs:string" use="required"/>
+	</xs:complexType>
+</xs:schema>
+
