@@ -2,7 +2,7 @@
     "name": "thapp/xmlconf",
     "description": "Xml configuration utility",
     "require-dev": {
-        "mockery/mockery": "dev-master",
+		"mockery/mockery": "0.7.2",
         "mikey179/vfsStream": "1.1.*"
     },
     "license": "MIT",
