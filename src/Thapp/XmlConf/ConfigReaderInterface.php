@@ -21,6 +21,6 @@ namespace Thapp\XmlConf;
  */
 interface ConfigReaderInterface
 {
-    public function load();
+    public function load($default = null);
 }
 

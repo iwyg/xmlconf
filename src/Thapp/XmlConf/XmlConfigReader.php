@@ -58,7 +58,6 @@ abstract class XmlConfigReader implements ConfigReaderInterface
      * @param XmlConfigCache $cache
      * @access public
      * @final
-     * @return mixed
      */
     final public function __construct(ConfigCache $cache, $file)
     {
@@ -71,7 +70,7 @@ abstract class XmlConfigReader implements ConfigReaderInterface
      *
      * @param mixed $xsd
      * @access public
-     * @return mixed
+     * @return void
      */
     public function setSchema($xsd)
     {
@@ -82,10 +81,11 @@ abstract class XmlConfigReader implements ConfigReaderInterface
      * validateSchema
      *
      * @param mixed $schema
-     * @access public
+     * @access protected
+     * @throws Thapp\XmlConf\Exception\InvalidConfigurationSchema
      * @return boolean
      */
-    public function validateSchema(\DOMDocument $dom)
+    protected function validateSchema(\DOMDocument $dom)
     {
         try {
             $valid = $dom->schemaValidate($this->schema);
@@ -135,19 +135,16 @@ abstract class XmlConfigReader implements ConfigReaderInterface
      * getSimpleXmlObject
      *
      * @access protected
-     * @throws Thapp\XmlConf\Exception\InvalidConfigurationSchema
-     * @return mixed
+     * @return \SimpleXmlElement
      */
     protected function getSimpleXmlObject()
     {
         $dom = new \DOMDocument;
         $dom->load($this->xmlfile);
 
-        if (!$this->validateSchema($dom)) {
-            throw new InvalidConfigurationSchema('Schema is not valid');
+        if ($this->validateSchema($dom)) {
+            return simplexml_import_dom($dom, $this->simplexmlclass);
         }
-
-        return simplexml_import_dom($dom, $this->simplexmlclass);
     }
 
     /**
@@ -155,7 +152,8 @@ abstract class XmlConfigReader implements ConfigReaderInterface
      *
      * @param mixed $simplexmlclass
      * @access public
-     * @return mixed
+     * @throws Thapp
+     * @return void
      */
     public function setSimpleXmlClass($simplexmlclass)
     {
