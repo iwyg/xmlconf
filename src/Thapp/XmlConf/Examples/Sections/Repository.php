@@ -79,6 +79,6 @@ class Repository
      */
     protected function load()
     {
-        $this->sections = $this->reader->load();
+        $this->sections = $this->reader->load(array());
     }
 }

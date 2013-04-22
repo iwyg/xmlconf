@@ -98,20 +98,25 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     /**
      * load
      *
-     * @param mixed $xml
+     * @param mixed $default
      * @access public
-     * @return array
+     * @return mixed
      */
-    public function load()
+    public function load($default = null)
     {
-        if (!$this->cache->isNew($this->xmlfile)) {
-            return $this->cache->get();
+        if (file_exists($this->xmlfile)) {
+
+            if (!$this->cache->isNew($this->xmlfile)) {
+                return $this->cache->get();
+            }
+
+            $data = $this->parse();
+            $this->cache->write($data);
+
+            return $data;
         }
 
-        $data = $this->parse();
-        $this->cache->write($data);
-
-        return $data;
+        return $default;
     }
 
     /**

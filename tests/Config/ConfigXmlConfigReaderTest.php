@@ -74,6 +74,19 @@ class ConfigXmlConfigReaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     */
+    public function testLoadDefault()
+    {
+        $reader = $this->getReader($this->makeCacheMock(function (&$cache = null) {
+            //$cache->shouldReceive('get')->andReturn(array('cached' => true));
+            return true;
+        }), 'file.xml');
+
+        $this->assertEquals(array('foo' => 'bar'), $reader->load(array('foo' => 'bar')));
+    }
+
+    /**
      * makeCacheMock
      *
      * @param Closure $construct
