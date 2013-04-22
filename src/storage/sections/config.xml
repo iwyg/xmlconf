@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sections xmlns="http://getsymphony.com/schema/section">
-	<section id="1" name="default section" handle="test" navgroup="content">
-		<fields>
-			<field id="1" name="Title" handle="title" type="input"/>
-		</fields>
-	</section>
-	<section id="2" name="another section" handle="test" navgroup="content">
-		<fields>
-			<field id="2" name="header" handle="header" type="input"/>
-			<field id="5" name="Sub Heading" handle="sub-heading" type="input"/>
-		</fields>
-	</section>
-	<section id="4" name="new section" handle="test" navgroup="content">
-		<fields>
-			<field id="5" name="Title" handle="title" type="input"/>
-		</fields>
-	</section>
-	<section id="6" name="new section 3" handle="test" navgroup="content">
-		<fields>
-			<field id="5" name="Title" handle="title" type="input"/>
-		</fields>
-	</section>
+  <section id="1" name="default section" handle="test" navgroup="content">
+    <fields>
+      <field id="1" name="Title" handle="title" type="input"/>
+    </fields>
+  </section>
+  <section id="2" name="another section" handle="test" navgroup="content">
+    <fields>
+      <field id="2" name="header" handle="header" type="input"/>
+      <field id="5" name="Sub Heading" handle="sub-heading" type="input"/>
+    </fields>
+  </section>
+  <section id="4" name="new section" handle="test" navgroup="content">
+    <fields>
+      <field id="5" name="Title" handle="title" type="input"/>
+    </fields>
+  </section>
+  <section id="6" name="new section 3" handle="test" navgroup="content">
+    <fields>
+      <field id="5" name="Title" handle="title" type="input"/>
+    </fields>
+  </section>
 </sections>
