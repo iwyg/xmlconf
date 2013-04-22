@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This File is part of the vendor\thapp\xmlconf\src\Thapp\XmlConf package
+ * This File is part of the Thapp\XmlConf package
  *
  * (c) Thomas Appel <mail@thomas-appel.com>
  *
