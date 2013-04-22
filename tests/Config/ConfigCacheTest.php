@@ -12,7 +12,7 @@
 namespace Thapp\Tests\XmlConf;
 
 use Mockery as m;
-use org\bovigo\vfs\VfsStream;
+use org\bovigo\vfs\vfsStream;
 use Illuminate\Cache\StoreInterface;
 use Thapp\Tests\XmlConf\Fixures\Stubs\ConfigCacheStub as Cache;
 
@@ -47,8 +47,8 @@ class ConfigCacheTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->root = VfsStream::setup('config');
-        $this->configPath = VfsStream::url('config');
+        $this->root = vfsStream::setup('config');
+        $this->configPath = vfsStream::url('config');
     }
 
     /**
