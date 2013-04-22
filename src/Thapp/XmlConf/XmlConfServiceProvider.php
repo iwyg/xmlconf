@@ -31,18 +31,21 @@ class XmlConfServiceProvider extends ServiceProvider
 
         $this->package('thapp/xmlconf');
 
-        $base = $this->app['config']->get('xmlconf::basedir');
+        $base        = $this->app['config']->get('xmlconf::basedir', array());
+        $cacheDriver = $this->app['config']->get('cache.driver', 'file');
 
-        foreach ($this->app['config']->get('xmlconf::reader', array()) as $reader => $namespace) {
+        foreach ($this->app['config']->get('xmlconf::namespaces', array()) as $reader => $namespace) {
 
-            $this->app['xmlconf.' . $reader] = $this->app->share(function ($app) use ($me, $base, $reader, $namespace)
+            $this->checkBaseDir($reader, $base);
+
+            $this->app['xmlconf.' . $reader] = $this->app->share(function ($app) use ($me, $base, $reader, $namespace, $cacheDriver)
             {
                 $class     = $this->getReaderClass($reader, $namespace);
-                $cache     = new Cache\Cache($app['cache']->driver(), $reader);
+                $cache     = new Cache\Cache($app['cache']->driver($cacheDriver), $reader);
                 $xmlreader = new $class($cache, $me->getConfPath($reader));
 
                 $xmlreader->setSimpleXmlClass($me->getSimpleXmlClass($reader, $namespace));
-                $xmlreader->setSchema($this->getSchemaPath($reader, $base));
+                $xmlreader->setSchema($this->getSchemaPath($reader, $base[$reader]));
 
                 return $xmlreader;
             });
@@ -58,7 +61,7 @@ class XmlConfServiceProvider extends ServiceProvider
      */
     public function getConfPath($reader)
     {
-        return realpath(sprintf("%s/storage/%s/config.xml", app_path(), $reader));
+        return realpath(sprintf("%s/%s/config.xml", storage_path(), $reader));
     }
 
     /**
@@ -96,5 +99,21 @@ class XmlConfServiceProvider extends ServiceProvider
     public function getReaderClass($reader, $namespace)
     {
         return sprintf('%s\%sConfigReader', $namespace, ucfirst($reader));
+    }
+
+    /**
+     * checkBaseDir
+     *
+     * @param string $reader
+     * @param array $base
+     * @throws \RuntimeException
+     * @access private
+     * @return void
+     */
+    private function checkBaseDir($reader, array $base)
+    {
+        if (!isset($base[$reader]) || !is_dir(dirname(app_path()) . '/' . $base[$reader])) {
+            throw new \RuntimeException('Either a basedir is not set or basedir is not a directory');
+        }
     }
 }

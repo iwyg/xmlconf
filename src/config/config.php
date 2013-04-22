@@ -4,17 +4,19 @@ return array(
 
     /*
     |--------------------------------------------------------------------------
-    | Basedir
+    | Basedir relative to the install directory
     |--------------------------------------------------------------------------
      */
-    'basedir' => 'vendor/thapp/xmlconf/src/Thapp/XmlConf/Examples',
+    'basedir' => array(
+        'sections' => 'vendor/thapp/xmlconf/src/Thapp/XmlConf/Examples'
+    ),
 
     /*
     |--------------------------------------------------------------------------
     | Reader dictionary
     |--------------------------------------------------------------------------
      */
-    'reader' => array(
+    'namespaces' => array(
         'sections' => 'Thapp\\XmlConf\\Examples\\Sections'
-    )
+    ),
 );
