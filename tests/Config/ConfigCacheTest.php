@@ -156,7 +156,7 @@ class ConfigCacheTest extends \PHPUnit_Framework_TestCase
      * @param Illuminate\Cache\StoreInterfacemixed $store
      * @param string $file
      * @access protected
-     * @return Symphony\Tests\Config\Fixures\Stubs\ConfigCacheStub
+     * @return Thapp\Tests\XmlConf\Fixures\Stubs\ConfigCacheStub
      */
     protected function getCache($store, $file = null)
     {

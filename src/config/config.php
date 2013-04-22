@@ -1,13 +1,19 @@
 <?php
 
 return array(
-    'pahts' => array(
-        'sections' => 'path/sections',
-        'pages'    => 'path/pages',
-    ),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Basedir
+    |--------------------------------------------------------------------------
+     */
     'basedir' => 'vendor/thapp/xmlconf/src/Thapp/XmlConf/Examples',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Reader dictionary
+    |--------------------------------------------------------------------------
+     */
     'reader' => array(
         'sections' => 'Thapp\\XmlConf\\Examples\\Sections'
     )

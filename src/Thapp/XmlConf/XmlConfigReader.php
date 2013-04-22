@@ -135,7 +135,7 @@ abstract class XmlConfigReader implements ConfigReaderInterface
      * getSimpleXmlObject
      *
      * @access protected
-     * @throws Symphony\Config\Exception\InvalidConfigurationSchema
+     * @throws Thapp\XmlConf\Exception\InvalidConfigurationSchema
      * @return mixed
      */
     protected function getSimpleXmlObject()

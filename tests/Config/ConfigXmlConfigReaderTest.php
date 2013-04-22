@@ -105,7 +105,7 @@ class ConfigXmlConfigReaderTest extends \PHPUnit_Framework_TestCase
     /**
      * getReader
      *
-     * @param mixed Symphony\Config\Cache\Cache
+     * @param mixed Thapp\XmlConf\Cache\Cache
      * @access protected
      * @return XmlConfigReader
      */
