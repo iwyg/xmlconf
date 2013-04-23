@@ -196,7 +196,11 @@ class ConfigCacheTest extends \PHPUnit_Framework_TestCase
         if (file_exists($file)) {
             unlink ($file);
         }
-        touch($file, 0777);
+
+        //touch($file, 0777);
+        // touch will fail in php < 5.4
+        file_put_contents($file, '');
+
         $this->root->getChild(basename($this->configPath) . '/config.xml')->lastModified($time);
         return $file;
     }
