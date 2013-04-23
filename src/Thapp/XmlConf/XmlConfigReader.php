@@ -55,13 +55,12 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     /**
      * __construct
      *
-     * @param ConfigCache $cache
-     * @param string $simpleXmlClass
-     * @param string $xml
-     * @param string $xsd
+     * @param ConfigCache $cache      Instance of `Thapp\XmlConf\Cache\Cache`
+     * @param string $simpleXmlClass  fully qualified class name
+     * @param string $xml             path to the xml config file
+     * @param string $xsd             path to the xsd schema file
      * @access public
      * @final
-     * @return mixed
      */
     final public function __construct(ConfigCache $cache, $simpleXmlClass, $xml, $xsd)
     {
@@ -74,9 +73,9 @@ abstract class XmlConfigReader implements ConfigReaderInterface
 
 
     /**
-     * validateSchema
+     * validate the xsd schema
      *
-     * @param mixed $schema
+     * @param string $schema path to the xsd schema file
      * @access protected
      * @throws Thapp\XmlConf\Exception\InvalidConfigurationSchema
      * @return boolean
@@ -92,9 +91,13 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     }
 
     /**
-     * load
+     * load the xml configuration.
      *
-     * @param mixed $default
+     * Checks if the file was altered since it was cached.
+     * Returns the parsed or the cached result.
+     *
+     * @param mixed $default the default value to return if the given xml file
+     * does not exist yet.
      * @access public
      * @return mixed
      */
@@ -116,7 +119,7 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     }
 
     /**
-     * parse
+     * calls the `parse` method on the SimpleXmlElement
      *
      * @access protected
      * @return mixed|array
@@ -128,7 +131,11 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     }
 
     /**
-     * getSimpleXmlObject
+     * get the `SimpleXmlObject`
+     *
+     * First creates a new `DOMDocument` and loads the xml config.
+     * If the xsd schema is valid, the dom is imported
+     * into a `SimpleXmlElement`.
      *
      * @access protected
      * @return \SimpleXmlElement
@@ -144,11 +151,11 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     }
 
     /**
-     * setSimpleXmlClass
+     * set the SimpleXml class
      *
-     * @param mixed $simplexmlclass
+     * @param string $simplexmlclass fully qualified class name
      * @access public
-     * @throws Thapp
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function setSimpleXmlClass($simplexmlclass)
@@ -163,7 +170,7 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     }
 
     /**
-     * setSchema
+     * set the xsd schema
      *
      * @param mixed $xsd
      * @access public

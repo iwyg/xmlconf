@@ -10,6 +10,7 @@
  */
 
 namespace Thapp\XmlConf\Cache;
+
 use Illuminate\Cache\Repository as CacheRepository;
 
 /**
