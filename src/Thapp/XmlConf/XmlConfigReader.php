@@ -66,7 +66,7 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     final public function __construct(ConfigCache $cache, $simpleXmlClass, $xml, $xsd)
     {
         $this->cache    = $cache;
-        $this->xmlfile  = $file;
+        $this->xmlfile  = $xml;
 
         $this->setSchema($xsd);
         $this->setSimpleXmlClass($simpleXmlClass);

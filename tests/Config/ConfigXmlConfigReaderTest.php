@@ -111,9 +111,14 @@ class ConfigXmlConfigReaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function getReader($cache, $file)
     {
-        $reader = new XmlConfigReader($cache, $file);
-        $reader->setSimpleXmlClass('Thapp\Tests\XmlConf\Fixures\Stubs\SimpleXmlElement');
-        $reader->setSchema($this->getSchema());
+        $reader = new XmlConfigReader(
+            $cache,
+            'Thapp\Tests\XmlConf\Fixures\Stubs\SimpleXmlElement',
+            $file,
+            $this->getSchema()
+        );
+        //$reader->setSimpleXmlClass('Thapp\Tests\XmlConf\Fixures\Stubs\SimpleXmlElement');
+        //$reader->setSchema($this->getSchema());
         return $reader;
     }
 
