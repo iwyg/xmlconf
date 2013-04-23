@@ -55,27 +55,23 @@ abstract class XmlConfigReader implements ConfigReaderInterface
     /**
      * __construct
      *
-     * @param XmlConfigCache $cache
+     * @param ConfigCache $cache
+     * @param string $simpleXmlClass
+     * @param string $xml
+     * @param string $xsd
      * @access public
      * @final
+     * @return mixed
      */
-    final public function __construct(ConfigCache $cache, $file)
+    final public function __construct(ConfigCache $cache, $simpleXmlClass, $xml, $xsd)
     {
         $this->cache    = $cache;
         $this->xmlfile  = $file;
+
+        $this->setSchema($xsd);
+        $this->setSimpleXmlClass($simpleXmlClass);
     }
 
-    /**
-     * setSchema
-     *
-     * @param mixed $xsd
-     * @access public
-     * @return void
-     */
-    public function setSchema($xsd)
-    {
-        $this->schema = $xsd;
-    }
 
     /**
      * validateSchema
@@ -164,5 +160,17 @@ abstract class XmlConfigReader implements ConfigReaderInterface
             throw new \InvalidArgumentException(sprintf('SimpleXml class must implement %s', $interface));
         }
         $this->simplexmlclass = $simplexmlclass;
+    }
+
+    /**
+     * setSchema
+     *
+     * @param mixed $xsd
+     * @access public
+     * @return void
+     */
+    public function setSchema($xsd)
+    {
+        $this->schema = $xsd;
     }
 }

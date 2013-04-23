@@ -45,12 +45,16 @@ class XmlConfServiceProvider extends ServiceProvider
 
             $this->app['xmlconf.' . $reader] = $this->app->share(function ($app) use ($me, $base, $reader, $namespace, $cacheDriver)
             {
-                $class     = $this->getReaderClass($reader, $namespace);
+                $class     = $me->getReaderClass($reader, $namespace);
                 $cache     = new Cache\Cache($app['cache']->driver($cacheDriver), $reader);
-                $xmlreader = new $class($cache, $me->getConfPath($reader));
+                $xmlreader = new $class(
 
-                $xmlreader->setSimpleXmlClass($me->getSimpleXmlClass($reader, $namespace));
-                $xmlreader->setSchema($this->getSchemaPath($reader, $base[$reader]));
+                    $cache,
+                    $me->getSimpleXmlClass($reader, $namespace),
+                    $me->getConfPath($reader),
+                    $me->getSchemaPath($reader, $base[$reader])
+
+                );
 
                 return $xmlreader;
             });
