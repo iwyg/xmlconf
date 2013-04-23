@@ -47,12 +47,12 @@ php artisan config:publish thapp/xmlconfig
 
 ## Examples 
 
-This package provides a example directory that sould get you started.
+This package provides an example directory that should get you started quickly.
 
-To a first glimpse you may copy the `storage/sections/config.xml` that is included with this packe to
+For a first glimpse you may copy the `storage/sections/config.xml` that is included with this package to
 `app/storage/sections/config.xml`.
 
-Next, create a new route. Somethig like: 
+Next, create a new route. Somethig like this should do: 
 
 ```php
 Route::get('/examples', function () use ($app) {
