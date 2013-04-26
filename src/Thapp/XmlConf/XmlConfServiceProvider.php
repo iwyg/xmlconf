@@ -94,7 +94,7 @@ class XmlConfServiceProvider extends ServiceProvider
      */
     public function getSchemaPath($reader, $base)
     {
-        return sprintf('%s/%s/%s/Schema/%s.xsd', dirname(app_path()), $base, ucfirst($reader), $reader);
+        return sprintf('%s/%s/%s/Schema/%s.xsd', dirname(app_path()), $base, ucfirst(camel_case($reader)), $reader);
     }
 
     /**
@@ -107,7 +107,7 @@ class XmlConfServiceProvider extends ServiceProvider
      */
     public function getReaderClass($reader, $namespace)
     {
-        return sprintf('%s\%sConfigReader', $namespace, ucfirst($reader));
+        return sprintf('%s\%sConfigReader', $namespace, ucfirst(camel_case($reader)));
     }
 
     /**
