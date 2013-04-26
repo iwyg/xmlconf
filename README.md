@@ -11,7 +11,7 @@ The xml configuration file however must validate against a provided xsd schema.
 
 ## Installation
 
-Add thapp\xsltbridge as a requirement to composer.json:
+Add thapp/xmlconf as a requirement to composer.json:
 
 ```json
 {
