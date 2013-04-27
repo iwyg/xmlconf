@@ -32,33 +32,13 @@ class XmlConfServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $me = $this;
 
+        // register package
         $this->package('thapp/xmlconf');
 
-        $base        = $this->app['config']->get('xmlconf::basedir', array());
-        $cacheDriver = $this->app['config']->get('cache.driver', 'file');
+        $this->regsiterCommands();
 
-        foreach ($this->app['config']->get('xmlconf::namespaces', array()) as $reader => $namespace) {
-
-            $this->checkBaseDir($reader, $base);
-
-            $this->app['xmlconf.' . $reader] = $this->app->share(function ($app) use ($me, $base, $reader, $namespace, $cacheDriver)
-            {
-                $class     = $me->getReaderClass($reader, $namespace);
-                $cache     = new Cache\Cache($app['cache']->driver($cacheDriver), $reader);
-                $xmlreader = new $class(
-
-                    $cache,
-                    $me->getSimpleXmlClass($reader, $namespace),
-                    $me->getConfPath($reader),
-                    $me->getSchemaPath($reader, $base[$reader])
-
-                );
-
-                return $xmlreader;
-            });
-        }
+        $this->regsiterConfigDrivers();
     }
 
     /**
@@ -124,5 +104,66 @@ class XmlConfServiceProvider extends ServiceProvider
         if (!isset($base[$reader]) || !is_dir(dirname(app_path()) . '/' . $base[$reader])) {
             throw new \RuntimeException('Either a basedir is not set or basedir is not a directory');
         }
+    }
+
+    /**
+     * regsiterCommands
+     *
+     * @access protected
+     * @return void
+     */
+    protected function regsiterCommands()
+    {
+
+        $this->app['command.xmlconf.warmup'] = $this->app->share(
+
+            function ($app)
+            {
+                return new Console\XmlConfWarmupCommand($app, $app['config']->get('xmlconf::namespaces'));
+            }
+
+        );
+
+        $this->commands(
+            'command.xmlconf.warmup'
+        );
+
+        //var_dump($this->app['command.xmlconf.warmup']); die;
+    }
+
+    /**
+     * regsiterConfigDrivers
+     *
+     * @access protected
+     * @return void
+     */
+    protected function regsiterConfigDrivers()
+    {
+        // register xml config dirvers
+        $me          = $this;
+        $base        = $this->app['config']->get('xmlconf::basedir', array());
+        $cacheDriver = $this->app['config']->get('cache.driver', 'file');
+
+        foreach ($this->app['config']->get('xmlconf::namespaces', array()) as $reader => $namespace) {
+
+            $this->checkBaseDir($reader, $base);
+
+            $this->app['xmlconf.' . $reader] = $this->app->share(function ($app) use ($me, $base, $reader, $namespace, $cacheDriver)
+            {
+                $class     = $me->getReaderClass($reader, $namespace);
+                $cache     = new Cache\Cache($app['cache']->driver($cacheDriver), $reader);
+                $xmlreader = new $class(
+
+                    $cache,
+                    $me->getSimpleXmlClass($reader, $namespace),
+                    $me->getConfPath($reader),
+                    $me->getSchemaPath($reader, $base[$reader])
+
+                );
+
+                return $xmlreader;
+            });
+        }
+
     }
 }
