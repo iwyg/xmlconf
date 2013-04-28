@@ -16,14 +16,8 @@ Add thapp/xmlconf as a requirement to composer.json:
 ```json
 {
     "require": {
-        "thapp/xmlconf": "dev-master"
-    },
-    "repositories": [
-        {
-        "type":"vcs",
-        "url":"https://github.com/iwyg/xmlconf"
-        }
-    ]
+        "thapp/xmlconf": "1.0.*"
+    }
 }
 ```
 
