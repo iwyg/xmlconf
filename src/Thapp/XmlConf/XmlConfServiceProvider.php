@@ -127,8 +127,6 @@ class XmlConfServiceProvider extends ServiceProvider
         $this->commands(
             'command.xmlconf.warmup'
         );
-
-        //var_dump($this->app['command.xmlconf.warmup']); die;
     }
 
     /**
@@ -164,6 +162,5 @@ class XmlConfServiceProvider extends ServiceProvider
                 return $xmlreader;
             });
         }
-
     }
 }
